@@ -17,7 +17,7 @@ export const handleEditCategory = createAsyncThunk("admins/edit-category",async 
     console.log('Received id:', id);
         console.log('Received formData:', formData);
         try {
-            const url = `${EDIT_CATEGORY.replace(':id', id)}`; // Construct URL with id
+            const url = `${EDIT_CATEGORY.replace(':id', id)}`;
             
             const response = await instance.put(url, formData)
             return response.data;
@@ -33,13 +33,13 @@ export const handleDeleteCategory = createAsyncThunk(
     async (id) => {
         console.log('Received id:', id);
       try {
-        const url = `${DELETE_CATEGORY.replace(':id',id)}`// Construct URL with id
+        const url = `${DELETE_CATEGORY.replace(':id',id)}`
   
         const response = await instance.delete(url);
   
         if (response.status === 200) {
-          // Success! You can optionally return any data from the response here
-          return response // Or any data you want to access in your reducer
+ 
+          return response 
         } else {
           throw new Error('Failed to delete category');
         }
@@ -83,8 +83,6 @@ const CategoryReducer = createSlice({
             })
             .addCase(handleEditCategory.fulfilled, (state, action) => {
                 state.loading = false;
-                // Assuming the payload is the updated category data
-                // Update your categories array here
                 const updatedCategory = action.payload;
                 const index = state.category.findIndex(cat => cat.id === updatedCategory.id);
                 if (index !== -1) {
@@ -98,18 +96,18 @@ const CategoryReducer = createSlice({
 
             //delete
             .addCase(handleDeleteCategory.pending, (state, action) => {
-                state.loading = true; // Set loading to true (optional)
+                state.loading = true;
             })
             .addCase(handleDeleteCategory.fulfilled, (state, action) => {
-                state.loading = false; // Set loading to false
-                const deletedCategoryId = action.payload.data.id; // Access data from response (assuming data property)
+                state.loading = false; 
+                const deletedCategoryId = action.payload.data.id;
                 state.category = state.category.filter(
                     (cat) => cat.id !== deletedCategoryId
-                ); // Update state to remove deleted category
+                );
             })
             .addCase(handleDeleteCategory.rejected, (state, action) => {
-                state.loading = false; // Set loading to false
-                state.error = action.error.message; // Set error message
+                state.loading = false; 
+                state.error = action.error.message;
             });
 
 
