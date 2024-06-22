@@ -34,7 +34,7 @@ export const handleEditDestination = createAsyncThunk(
         console.log('Received id:', id);
         console.log('Received formData:', formData);
         try {
-            const url = `${EDIT_DESTINATION.replace(':id', id)}`; // Construct URL with id
+            const url = `${EDIT_DESTINATION.replace(':id', id)}`; 
             
             const response = await instance.put(url, formData, {
                 headers: {
@@ -54,13 +54,13 @@ export const handleDeleteDestination = createAsyncThunk(
     async (id) => {
         console.log('Received id:', id);
       try {
-        const url = `${DELETE_DESTINATION.replace(':id',id)}`// Construct URL with id
+        const url = `${DELETE_DESTINATION.replace(':id',id)}`
   
         const response = await instance.delete(url);
   
         if (response.status === 200) {
-          // Success! You can optionally return any data from the response here
-          return response // Or any data you want to access in your reducer
+        
+          return response 
         } else {
           throw new Error('Failed to delete destination');
         }
@@ -130,18 +130,18 @@ const destinationReducer = createSlice({
 
               
               .addCase(handleDeleteDestination.pending, (state, action) => {
-                state.loading = true; // Set loading to true (optional)
+                state.loading = true; 
               })
               .addCase(handleDeleteDestination.fulfilled, (state, action) => {
-                state.loading = false; // Set loading to false
-                const deletedDestinationId = action.payload.data.id; // Access data from response (assuming data property)
+                state.loading = false; 
+                const deletedDestinationId = action.payload.data.id; // Access data from response 
                 state.destinations = state.destinations.filter(
                   (destination) => destination.id !== deletedDestinationId
-                ); // Update state to remove deleted destination
+                ); 
               })
               .addCase(handleDeleteDestination.rejected, (state, action) => {
-                state.loading = false; // Set loading to false
-                state.error = action.error.message; // Set error message
+                state.loading = false; 
+                state.error = action.error.message; 
               });
     }
 })
