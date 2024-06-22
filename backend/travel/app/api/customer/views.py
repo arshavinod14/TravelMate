@@ -326,16 +326,3 @@ class AllReviews(APIView):
         serializer = ReviewSerializer(reviews, many=True)
         return Response(serializer.data)
     
-# from rest_framework.permissions import IsAuthenticated
-
-
-# class Notifications(APIView):
-#     permission_classes = (IsAuthenticated,) 
-
-
-#     def get(self, request):
-#         print("Request user:", request.user)
-#         print("User authenticated:", request.user.is_authenticated)
-#         notifications = Notification.objects.filter(user=request.user)
-#         serializer = NotificationSerializer(notifications, many=True)
-#         return Response(serializer.data, status=status.HTTP_200_OK)

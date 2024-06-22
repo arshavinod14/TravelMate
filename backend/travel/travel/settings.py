@@ -12,7 +12,9 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 import os
 from pathlib import Path
+from dotenv import load_dotenv
 
+load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -21,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-6yqk7y^6+#%m7+o0p1@c!@z9yf@n=b3oax23dvrw6#0h)%@_n&"
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -94,11 +96,11 @@ WSGI_APPLICATION = "travel.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": "travel2",
-        "USER": "postgres",
-        "PASSWORD": "arsha123",
-        "HOST": "127.0.0.1",
-        "PORT": "5432",
+        "NAME": os.getenv("DB_NAME"),
+        "USER": os.getenv("DB_USER"),
+        "PASSWORD": os.getenv("DB_PASSWORD"),
+        "HOST": os.getenv("DB_HOST"),
+        "PORT": os.getenv("DB_PORT"),
     }
 }
 
@@ -151,7 +153,7 @@ STATICFILES_DIRS = [
 
 SITE_URL= 'http://localhost:3000/'
 
-STRIPE_SECRET_KEY = 'sk_test_51PATmXSHqu7cpmoLCM5uPlcUXAbFsWfX8oqI9OR6u1KtwhhxOD5Scwt9joh33kTja3gCwyNLzM6OpXy6xfgDPg8N00D2we3XHR'
+STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY')
 
 
 # Default primary key field type

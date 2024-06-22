@@ -32,16 +32,16 @@ export const handleAgentIdDetails = createAsyncThunk(
   "agent/id/details",
   async (id) => {
     try {
-      const url = AGENT_ID_DETAILS.replace(":id", id); // Replace :id with actual agent ID
-      const response = await instance.get(url); // Fetch agent details using GET request
+      const url = AGENT_ID_DETAILS.replace(":id", id); 
+      const response = await instance.get(url); 
       
       if (response.status === 200) {
-        return response.data; // Return agent details if request is successful
+        return response.data; 
       } else {
         throw new Error('Failed to fetch agent details');
       }
     } catch (error) {
-      throw new Error(error); // Throw error if request fails
+      throw new Error(error); 
     }
   }
 );
@@ -289,12 +289,12 @@ const agentReducer = createSlice({
       .addCase(handleDeclineBooking.fulfilled, (state, action) => {
         state.loading = false;
         state.bookings = action.payload;
-        // Handle successful booking decline here, update state accordingly
+       
       })
       .addCase(handleDeclineBooking.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message;
-        // Handle rejected booking decline here, update state or handle error accordingly
+       
       })
 
       //change password

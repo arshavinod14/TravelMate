@@ -22,7 +22,7 @@ export const handleAddPackage = createAsyncThunk("addPackage", async (formData) 
       return response.data;
     } catch (error) {
       console.error("Error adding package:", error.response.data);
-      // You can also display an error message to the user here
+    
       throw error;
     }
   });
@@ -31,7 +31,7 @@ export const handleEditPackage = createAsyncThunk("editPackage", async ({id, for
     console.log('Received id:', id);
     console.log('Received formData:', formData);
     try {
-        const url = `${EDIT_PACKAGE.replace(':id', id)}`; // Construct URL with id
+        const url = `${EDIT_PACKAGE.replace(':id', id)}`; 
         
         const response = await instance.put(url, formData, {
             headers: {
@@ -49,13 +49,13 @@ export const handleDeletePackage = createAsyncThunk(
     async (id) => {
         console.log('Received id:', id);
       try {
-        const url = `${DELETE_PACKAGE.replace(':id',id)}`// Construct URL with id
+        const url = `${DELETE_PACKAGE.replace(':id',id)}`
   
         const response = await instance.delete(url);
   
         if (response.status === 200) {
-          // Success! You can optionally return any data from the response here
-          return response // Or any data you want to access in your reducer
+        
+          return response 
         } else {
           throw new Error('Failed to delete destination');
         }
@@ -80,12 +80,11 @@ export const handleDeletePackage = createAsyncThunk(
         });
         return response.data;
       } catch (error) {
-        // Handle error from the server
+ 
         if (!error.response) {
           throw error;
         }
-  
-        // Return the error response from the server
+
         return rejectWithValue(error.response.data);
       }
     }
@@ -95,7 +94,7 @@ export const handleDeletePackage = createAsyncThunk(
     "packages/activity",
     async (id) => {
       try {
-        const url = VIEW_ACTIVITIES.replace(":id", id); // Replace :id with actual id
+        const url = VIEW_ACTIVITIES.replace(":id", id); 
   
         const response = await instance.get(url);
         console.log("response from activity:", response);
@@ -147,26 +146,26 @@ const packageReducer = createSlice({
             })
             .addCase(handleAddPackage.fulfilled, (state, action) => {
                 state.loading = false;
-                state.package = action.payload; // Update state with successful response data
+                state.package = action.payload; 
             })
             .addCase(handleAddPackage.rejected, (state, action) => {
                 state.loading = false;
-                state.error = action.error.message || 'Failed to add package'; // Handle error message
+                state.error = action.error.message || 'Failed to add package'; 
                 console.error("Error adding package:", action.error);
             })
 
             //edit
             .addCase(handleEditPackage.pending, (state) => {
                 state.loading = true;
-                state.error = null; // Clear any previous errors
+                state.error = null; 
               })
               .addCase(handleEditPackage.fulfilled, (state, action) => {
                 state.loading = false;
-                state.editedPackage = action.payload; // Update state with edited package data
+                state.editedPackage = action.payload;
               })
               .addCase(handleEditPackage.rejected, (state, action) => {
                 state.loading = false;
-                state.error = action.error.message; // Set error message
+                state.error = action.error.message;
               })
 
               //delete
@@ -184,28 +183,10 @@ const packageReducer = createSlice({
                 state.error = action.error.message;
               })
 
-            //   .addCase(handleAddNewActivity.pending, (state) => {
-            //     state.loading = true; // Set loading state to true while pending
-            //     state.error = null; // Clear any previous errors
-            //   })
-            //   .addCase(handleAddNewActivity.fulfilled, (state, action) => {
-            //     state.loading = false;
-        
-            //     // Update state with new data if needed
-            //     const newActivity = action.payload;
-            //     const packageToUpdate = state.packages.find(pkg => pkg.id === newActivity.packageId);
-            //     if (packageToUpdate) {
-            //       packageToUpdate.activities.push(newActivity);
-            //     }
-            // })
-            //   .addCase(handleAddNewActivity.rejected, (state, action) => {
-            //     state.loading = false; // Set loading state to false on rejection
-            //     state.error = action.error.message; // Set error message
-            //   })
-
+    
             .addCase(handleAddNewActivity.pending, (state) => {
-                state.loading = true; // Set loading state to true while pending
-                state.error = null; // Clear any previous errors
+                state.loading = true; 
+                state.error = null;
               })
               .addCase(handleAddNewActivity.fulfilled, (state, action) => {
                 state.loading = false;
@@ -218,8 +199,8 @@ const packageReducer = createSlice({
                 }
               })
               .addCase(handleAddNewActivity.rejected, (state, action) => {
-                state.loading = false; // Set loading state to false on rejection
-                state.error = action.error.message; // Set error message
+                state.loading = false; 
+                state.error = action.error.message; 
               })
         
 
@@ -235,7 +216,7 @@ const packageReducer = createSlice({
               })
               .addCase(handleFetchingActivities.rejected, (state, action) => {
                 state.loading = false;
-                state.error = action.error; // Use action.error for consistency
+                state.error = action.error; 
               });
 
     }
