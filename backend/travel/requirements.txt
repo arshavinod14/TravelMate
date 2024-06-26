@@ -5,3 +5,4 @@ stripe==9.4.0
 psycopg2==2.9.7
 gunicorn==20.1.0
 python-dotenv
+django-cors-headers==3.9.0
