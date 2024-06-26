@@ -28,7 +28,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["travelmate-936k.onrender.com", "travelmate-frontend.onrender.com"]
+ALLOWED_HOSTS = ["*", "travelmate-frontend.onrender.com"]
 
 
 # Application definition
