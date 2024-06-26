@@ -69,5 +69,5 @@
     "crypto": false,
     "os": false
   },
-  "proxy": "travelmate-936k.onrender.com"
+  "proxy": "https://travelmate-backend-20wo.onrender.com"
 }
