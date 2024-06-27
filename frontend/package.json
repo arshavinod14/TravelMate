@@ -69,5 +69,5 @@
     "crypto": false,
     "os": false
   },
-  "proxy": "http://127.0.0.1:8000"
+  "proxy": "https://travelmate-backend-20wo.onrender.com"
 }
