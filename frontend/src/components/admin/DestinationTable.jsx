@@ -195,7 +195,7 @@ const DestinationTable = () => {
                   <td className="px-6 py-4">
                     {destination.image && (
                       <img  
-                        src={destination.image} 
+                        src={`http://127.0.0.1:8000${destination.image}`}
                         alt={destination.destination_name} 
                         className="w-40 h-28 rounded-lg" />
                     )}

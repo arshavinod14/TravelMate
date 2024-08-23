@@ -78,7 +78,7 @@ function CategoryFilter() {
         className="flex items-center  w-full m-10" 
       >
         <img
-          src={packages.image}
+          src={`http://127.0.0.1:8000${packages.image}`}
           alt={packages.package_name} 
           className=" w-28 h-20 rounded-lg" 
         />

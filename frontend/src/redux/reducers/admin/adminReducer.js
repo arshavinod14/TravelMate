@@ -108,17 +108,19 @@ export const handleCategoryDistribution = createAsyncThunk("admin/category",asyn
 const initialState = {
   loading: false,
   message: null,
-  adminTokens: JSON.parse(localStorage.getItem("adminTokens")),
+  adminTokens: JSON.parse(localStorage.getItem("adminTokens") || "null"),
   destinations: null,
   users: [],
-  agents:[],
-  category:[],
-  booking:[],
+  agents: [],
+  category: [],
+  booking: [],
   bookingTrends: [],
   popularDestinations: [],
   revenueTrends: [],
-  categoryDistribution:[],
+  categoryDistribution: [],
 };
+
+
 const adminReducer = createSlice({
   name: "admin",
   initialState,

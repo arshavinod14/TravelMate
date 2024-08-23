@@ -16,6 +16,8 @@ from dotenv import load_dotenv
 import dj_database_url
 
 load_dotenv()
+
+ENVIRONMENT = os.getenv('ENVIRONMENT',default="production")
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -26,10 +28,16 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.getenv('SECRET_KEY')
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv('DEBUG')
 
-ALLOWED_HOSTS = ["*"]
+if ENVIRONMENT == 'development':
+    DEBUG = True
+else:
+    DEBUG = False
+
+# SECURITY WARNING: don't run with debug turned on in production!
+
+
+ALLOWED_HOSTS = ["*",'localhost', '127.0.0.1']
 
 
 # Application definition
@@ -90,20 +98,24 @@ WSGI_APPLICATION = "travel.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-# DATABASES = {
-#     "default": {
-#         "ENGINE": "django.db.backends.postgresql",
-#         "NAME": os.getenv("DB_NAME"),
-#         "USER": os.getenv("DB_USER"),
-#         "PASSWORD": os.getenv("DB_PASSWORD"),
-#         "HOST": os.getenv("DB_HOST"),
-#         "PORT": os.getenv("DB_PORT"),
-#     }
-# }
+if ENVIRONMENT == 'development':
+    DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": os.getenv("DB_NAME"),
+        "USER": os.getenv("DB_USER"),
+        "PASSWORD": os.getenv("DB_PASSWORD"),
+        "HOST": os.getenv("DB_HOST"),
+        "PORT": os.getenv("DB_PORT"),
+    }
 
-DATABASES = {
-    'default': dj_database_url.parse(os.getenv('DATABASE_URL'))
 }
+else:
+    DATABASES = {
+        'default': dj_database_url.parse(os.getenv('DATABASE_URL'))
+}
+
+
 
 AUTH_USER_MODEL = "app.Account"
 
@@ -164,13 +176,14 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
 CORS_ALLOW_ALL_ORIGINS = True
-CORS_ALLOW_CREDENTIALS = True
-
-# CORS_ALLOWED_ORIGINS = [
-#     "http://localhost:3000",
-# ]
+CORS_ALLOW_ALL_ORIGINS = False
 
 CORS_ALLOWED_ORIGINS = [
-    "https://travelmate-frontend.onrender.com",
+    "http://localhost:3000",
+    # Add other allowed origins here
 ]
+
+# CORS_ALLOWED_ORIGINS = [
+#     "https://travelmate-frontend.onrender.com",
+# ]
 

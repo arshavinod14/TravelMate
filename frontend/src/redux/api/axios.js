@@ -1,8 +1,7 @@
 import axios from "axios";
 
 export const instance = axios.create({
-    // baseURL: "http://localhost:8000/"
-    baseURL: "https://travelmate-backend-20wo.onrender.com/"
+    baseURL: "http://localhost:8000/"
 })
 
 instance.interceptors.request.use((config) => {
@@ -26,12 +25,3 @@ instance.interceptors.request.use((config) => {
     return config;
 })
 
-
-
-//request and response intercept  - header 
-
-
-
-// export const agentInstance = axios.create({
-//     baseURL: "http://localhost:8000/"
-// })

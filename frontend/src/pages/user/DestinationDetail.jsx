@@ -102,7 +102,7 @@ export default function DestinationDetail() {
           <img
             loading="lazy"
             className="h-full w-full object-cover"
-            src={destination.image}
+            src={`http://127.0.0.1:8000${destination.image}`}
             alt=""
           />
           <div className="absolute bottom-7 left-0 p-3 text-white font-bold text-3xl">

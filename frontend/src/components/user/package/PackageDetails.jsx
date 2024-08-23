@@ -97,7 +97,7 @@ export default function PackageDetails() {
           <img
             loading="lazy"
             className="h-full w-full object-cover "
-            src={package_s.image}
+            src={`http://127.0.0.1:8000${package_s.image}`}
             alt=""
           />
           <div className="absolute bottom-7 left-0 p-3 text-white font-bold text-3xl">

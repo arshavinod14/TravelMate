@@ -68,6 +68,7 @@ class AgentListView(APIView):
 
 class AddDestination(APIView):
     def post(self, request):
+        print("Received data:", request.data)  # Print incoming data for debugging
         serializer = DestinationSerializer(data = request.data)
         print("serializer of destination:",serializer)
         if serializer.is_valid():

@@ -332,7 +332,7 @@ function PackageTable() {
                 <td className="px-6 py-4 text-center">
                   {pkg.image && (
                     <img
-                      src={pkg.image}
+                      src={`http://127.0.0.1:8000${pkg.image}`}
                       alt={pkg.package_name}
                       className="w-20 h-20 rounded-lg"
                     />
